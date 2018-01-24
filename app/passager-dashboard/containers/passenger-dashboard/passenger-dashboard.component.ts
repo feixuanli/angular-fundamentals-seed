@@ -1,52 +1,45 @@
 import { Component, OnInit } from '@angular/core';
 import { Passenger } from '../../models/passenger.interface';
+import { Object } from 'core-js/library/web/timers';
+import { PassengerDashboardService } from '../../passenger-dashboard.service'
 @Component({
     selector: 'passenger-dashboard',
     styleUrls:['./passenger-dashboard.component.scss'],
     template: `
-    <passenger-count></passenger-count>
-    <passenger-detail></passenger-detail>
     <h1>{{ title }}</h1>
-    <div>
-        <ul>
-            <li *ngFor="let passenger of passengers; let i = index">
-                <span class="status" [ngClass]="{'checked-in': passenger.checkedIn}">
-                </span>
-                {{ i }}. {{passenger.name}}
-                <div class="date">
-                    Check in date: 
-                    {{passenger.checkInDate? (passenger.checkInDate | date: 'yMMMMd'): 'not checked in yet'}}
-                </div>
-                <div class ="children">
-                    Children: {{passenger.children?.length || 0 }}
-                </div>
-            </li>
-        </ul>
+    <passenger-count [items]="passengers">
+    </passenger-count>
+    <div *ngFor="let passenger of passengers">
+        {{passenger.name}}
     </div>
+    <passenger-detail *ngFor="let passenger of passengers" 
+    [detail]="passenger" 
+    (remove)="handleRemove($event)"
+    (edit)="handleEdit($event)">
+    </passenger-detail>
     `
 })
 export class PassengerDashboardComponent implements OnInit {
     title: string = 'Airline Passengers';
     passengers : Passenger[];
+    constructor(private passengerService: PassengerDashboardService){
+
+    }
     ngOnInit(){
-        this.passengers  = [{
-            id: 1, 
-            name: 'Stephen',
-            checkedIn: true,
-            checkInDate: null,
-            children: null
-        }, 
-        {
-            id: 2, 
-            name: 'rose',
-            checkedIn: false,
-            checkInDate: null,
-            children: [{
-                name: 'xiaoming',
-                age: 5,
-            }]
-        }
+        this.passengers  = this.passengerService.getPassengers();
+    }
       
-    ]
+    handleRemove(event: Passenger){
+        this.passengers = this.passengers.filter((passenger: Passenger) => {
+            return passenger.id !== event.id;
+        });
+    }
+    handleEdit(event: Passenger){
+        this.passengers = this.passengers.map((passenger: Passenger) => {
+            if(passenger.id === event.id) {
+                 passenger = event;
+            }
+            return passenger;
+        });
     }
 }

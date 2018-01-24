@@ -4,6 +4,8 @@
  import { PassengerDetail } from './components/passenger-detail/passenger-detail.component';
  import { PassengerDashboardComponent } from './containers/passenger-dashboard/passenger-dashboard.component'
  import { COMPILER_OPTIONS } from '@angular/core/src/linker/compiler';
+ //service 
+ import { PassengerDashboardService } from './passenger-dashboard.service';
  @NgModule({
      declarations:[
         PassengerDashboardComponent,
@@ -15,6 +17,9 @@
      ],
      exports: [
         PassengerDashboardComponent,
+     ],
+     providers: [
+        PassengerDashboardService
      ]
  })
  export class PassengerDashboardModule {
