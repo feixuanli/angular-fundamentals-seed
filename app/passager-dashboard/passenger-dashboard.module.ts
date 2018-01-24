@@ -4,6 +4,7 @@
  import { PassengerDetail } from './components/passenger-detail/passenger-detail.component';
  import { PassengerDashboardComponent } from './containers/passenger-dashboard/passenger-dashboard.component'
  import { COMPILER_OPTIONS } from '@angular/core/src/linker/compiler';
+ import { HttpModule } from '@angular/http'
  //service 
  import { PassengerDashboardService } from './passenger-dashboard.service';
  @NgModule({
@@ -14,6 +15,7 @@
      ],
      imports:[
          CommonModule,
+         HttpModule
      ],
      exports: [
         PassengerDashboardComponent,

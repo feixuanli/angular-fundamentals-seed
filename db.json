@@ -1,1 +1,19 @@
-{}
+{
+    "passengers":[{
+            "id": 1, 
+            "name": "Stephen",
+            "checkedIn": true,
+            "checkInDate": null,
+            "children": null
+        }, 
+        {
+            "id": 2, 
+            "name": "rose",
+            "checkedIn": false,
+            "checkInDate": null,
+            "children": [{
+                "name": "xiaoming",
+                "age": 5
+            }]
+        }]
+}
