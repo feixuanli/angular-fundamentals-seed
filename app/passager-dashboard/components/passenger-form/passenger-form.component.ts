@@ -19,15 +19,11 @@ import { Passenger } from '../../models/passenger.interface';
     <div>
     Checked In : 
         <label>
-            <input type = "radio" [value]="true" name="checkedin"
+            <input type = "checkbox" [value]="true" name="checkedin"
             [ngModel]="detail?.checkedIn"
             (ngModelChange)="toggleCheckedIn($event)">
         </label>
-        <label>
-            <input type = "radio" [value]="false" name="checkedin"
-            [ngModel]="detail?.checkedIn"
-            (ngModelChange)="toggleCheckedIn($event)">
-        </label>
+     
     </div>
     </form>
 
