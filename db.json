@@ -5,19 +5,14 @@
       "name": "toddjk",
       "checkedIn": true,
       "checkInDate": null,
-      "children": null
+      "baggage": ""
     },
     {
       "id": 2,
       "name": "rose",
       "checkedIn": false,
-      "checkInDate": null,
-      "children": [
-        {
-          "name": "xiaoming",
-          "age": 5
-        }
-      ]
+      "checkInDate": 1490742000000,
+      "baggage":""
     }
   ]
 }
