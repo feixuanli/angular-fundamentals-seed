@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Passenger } from '../../models/passenger.interface';
 import { Baggage } from '../../models/baggage.interface';
 @Component({
@@ -8,7 +8,7 @@ import { Baggage } from '../../models/baggage.interface';
     <div>
     {{detail | json}} 
     </div>
-    <form #form="ngForm" novalidate>
+    <form (ngSubmit)="handleSubmit(form.value, form.valid)" #form="ngForm" novalidate>
     <div>
     passenger name: 
     <input type = "text" name="name"  
@@ -51,8 +51,6 @@ import { Baggage } from '../../models/baggage.interface';
         </select>
     </div>
     <button type="submit" [disabled]="form.invalid"> update passenger </button>
-
-
     </form>
     <div>
         {{ form.value | json }}
@@ -68,6 +66,9 @@ import { Baggage } from '../../models/baggage.interface';
 export class PassengerForm {
     @Input()
     detail: Passenger;
+
+    @Output()
+    update: EventEmitter<Passenger> = new EventEmitter();
 
     baggage: Baggage[] = [{ 
         'key': 'none',
@@ -91,4 +92,10 @@ export class PassengerForm {
             this.detail.checkInDate =  Date.now();
         }
     }
+    handleSubmit(passenger: Passenger, isValid: boolean) {
+        if(isValid) {
+            this.update.emit(passenger);
+        }   
+    }
 }
+

@@ -6,7 +6,8 @@ import { Passenger } from '../../models/passenger.interface';
     selector: 'passenger-viewer',
     styleUrls: ['./passenger-viewer.component.scss'],
     template: `<div>
-    <passenger-form [detail]="passenger"></passenger-form>
+    <passenger-form [detail]="passenger"
+    (update)="handleUpdate($event)"></passenger-form>
     </div>`
 })
 
@@ -15,10 +16,16 @@ export class PassengerViewer implements OnInit{
     constructor(private passengerService: PassengerDashboardService){
 
     }
-    ngOnInit(){
+    ngOnInit() {
         this.passengerService.getPassenger(1)
         .subscribe((passenger: Passenger) => {
             this.passenger = passenger;
         });
+    }
+    handleUpdate(passenger: Passenger){
+        this.passengerService.updatePassengers(passenger)
+        .subscribe((data: Passenger) => {
+            this.passenger = Object.assign({}, this.passenger, passenger)
+        })
     }
 }

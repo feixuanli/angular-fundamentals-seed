@@ -32,9 +32,9 @@ export class PassengerDashboardService {
 
         });
         return this.http.put(`${PASSENGER_API}/${passenger.id}`, passenger, options)
-        .map((response: Response) => response.json()
+        .map((response: Response) => response.json())
         .catch((error: any) => Observable.throw(error.json))
-    )}
+    }
     removePassengers(passenger: Passenger): Observable<Passenger>{
         return this.http.delete(`${PASSENGER_API}/${passenger.id}`)
         .map((response: Response) => response.json()

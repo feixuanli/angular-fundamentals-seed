@@ -1,10 +1,8 @@
 {
   "passengers": [
     {
+      "name": "zhang yang",
       "id": 1,
-      "name": "toddjk",
-      "checkedIn": true,
-      "checkInDate": null,
       "baggage": "hand-only"
     },
     {
@@ -12,7 +10,7 @@
       "name": "rose",
       "checkedIn": false,
       "checkInDate": 1490742000000,
-      "baggage":""
+      "baggage": ""
     }
   ]
 }
