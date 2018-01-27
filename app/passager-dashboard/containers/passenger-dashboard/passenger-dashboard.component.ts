@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Passenger } from '../../models/passenger.interface';
 import { Object } from 'core-js/library/web/timers';
+import { Router } from '@angular/router';
 import { PassengerDashboardService } from '../../passenger-dashboard.service'
 @Component({
     selector: 'passenger-dashboard',
@@ -15,15 +16,21 @@ import { PassengerDashboardService } from '../../passenger-dashboard.service'
     <passenger-detail *ngFor="let passenger of passengers" 
     [detail]="passenger" 
     (remove)="handleRemove($event)"
-    (edit)="handleEdit($event)">
+    (edit)="handleEdit($event)"
+    (view)="handleView($event)">
     </passenger-detail>
     `
 })
 export class PassengerDashboardComponent implements OnInit {
     title: string = 'Airline Passengers';
     passengers : Passenger[];
-    constructor(private passengerService: PassengerDashboardService){
+    constructor(
+        private router: Router,
+        private passengerService: PassengerDashboardService){
 
+    }
+    handleView(event: Passenger) {
+        this.router.navigate(['passengers', event.id]);
     }
     ngOnInit(){
         this.passengerService

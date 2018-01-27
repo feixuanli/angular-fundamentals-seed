@@ -18,13 +18,11 @@ import { Passenger } from '../../models/passenger.interface';
         Check in date: 
         {{detail.checkInDate? (detail.checkInDate | date: 'yMMMMd'): 'not checked in yet'}}
     </div>
-    <div class ="children">
-        Children: {{detail.children?.length || 0 }}
-    </div>
     <button (click)="toggleEdit()">
         {{editing? 'done': 'edit'}}
     </button>
     <button (click)="onRemove()">remove</button>
+    <button (click)="onView()">view</button>
     `
 })
 export class PassengerDetail implements OnChanges {
@@ -32,11 +30,17 @@ export class PassengerDetail implements OnChanges {
     detail: Passenger;
 
     @Output()
-    remove: EventEmitter<any> = new EventEmitter();
+    remove: EventEmitter<Passenger> = new EventEmitter();
 
     @Output()
-    edit: EventEmitter<any> = new EventEmitter();
+    edit: EventEmitter<Passenger> = new EventEmitter();
 
+    @Output()
+    view: EventEmitter<Passenger> = new EventEmitter();
+
+    onView(){
+        this.view.emit(this.detail);
+    }
     editing: boolean = false;
     onNameChange(value: string) {
         this.detail.name = value;

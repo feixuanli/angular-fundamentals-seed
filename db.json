@@ -3,11 +3,27 @@
     {
       "name": "zhang yang",
       "id": 1,
-      "baggage": "hand-only"
+      "checkedin": true,
+      "baggage": "both baggage",
+      "checkedInDate": 1517014150188
     },
     {
       "id": 2,
       "name": "rose",
+      "checkedIn": false,
+      "checkInDate": 1490742000000,
+      "baggage": ""
+    },
+    {
+      "id": 3,
+      "name": "xiao ming",
+      "checkedIn": false,
+      "checkInDate": 1490742000000,
+      "baggage": ""
+    },
+    {
+      "id": 4,
+      "name": "liang",
       "checkedIn": false,
       "checkInDate": 1490742000000,
       "baggage": ""
